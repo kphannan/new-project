@@ -1,5 +1,16 @@
 // --- Artifact Versioning
 
+
+versioning {
+    releases = ['release', 'master']
+    releaseMode = 'tag'	// (tag or snapshot) how to compute version on release-branches
+    displayMode = 'snapshot'	// (full, snapshot or base) how to compute version on non-release-branches
+}
+
+//rootProject.version = versioning.info.full
+rootProject.version = getVersion()
+
+
 jar {
     manifest {
         attributes(
@@ -12,4 +23,16 @@ jar {
         )
     }
 }
+
+
+def getVersion() {
+    return versioning.info.full
+}
+
+rootProject.version = getVersion()
+project.version = rootProject.version
+println "project.version is : $project.version"
+
+
+
 
