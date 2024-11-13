@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE module PUBLIC
+          "-//Puppy Crawl//DTD Suppressions 1.1//EN"
+          "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+
+<suppressions>
+
+    <suppress files="src/.*" checks="JavadocType" />
+    <suppress files="src/.*" checks="JavadocStyle" />
+    <suppress files="src/.*" checks="JavadocTagContinuationIndentation" />
+    <suppress files="src/.*" checks="JavadocParagraph" />
+    <suppress files="src/.*" checks="JavadocMethod" />
+    <suppress files="src/.*" checks="InvalidJavadocPosition" />
+    <suppress files="src/.*" checks="SummaryJavadoc" />
+    <suppress files="src/.*" checks="MissingJavadocMethod" />
+    <suppress files="src/.*" checks="MissingJavadocType" />
+    <suppress files="src/.*" checks="RequiresEmptyLineBeforeBlockTagGroup" />
+    <suppress files="src/.*" checks="AtclauseOrder" />
+
+</suppressions>

@@ -1,0 +1,19 @@
+// ----- Static Analysis
+// --- Checkstyle
+checkstyle {
+    ignoreFailures = false
+    showViolations = false
+    toolVersion = "${checkstyleVersion}"
+    // checkstyle.xml copy from:
+    // https://raw.githubusercontent.com/checkstyle/checkstyle/checkstyle-8.6/src/main/resources/google_checks.xml
+    // the version should be as same as plugin version
+    configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
+}
+
+checkstyleMain {
+    source = 'src/main/java'
+}
+
+checkstyleTest {
+    source = 'src/test/java'
+}
