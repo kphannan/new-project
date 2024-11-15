@@ -1,14 +1,26 @@
 // --- Artifact Versioning
 
+def getVersion() {
+    return versioning.info.full
+}
+
+//rootProject.version = versioning.info.full
+rootProject.version = getVersion()
+project.version = rootProject.version
+println "project.version is : $project.version"
+
+group = $basePackge
+
+version = $rootProject.version
+// version defaults to this.
+
+
 
 versioning {
     releases = ['release', 'master']
     releaseMode = 'tag'	// (tag or snapshot) how to compute version on release-branches
     displayMode = 'snapshot'	// (full, snapshot or base) how to compute version on non-release-branches
 }
-
-//rootProject.version = versioning.info.full
-rootProject.version = getVersion()
 
 
 jar {
@@ -19,20 +31,8 @@ jar {
             'Build-Revision' : versioning.info.commit,
             'Created-By'     : "Gradle ${gradle.gradleVersion}",
             'Build-Jdk'      : "Version: ${System.properties['java.version']} (Vendor: ${System.properties['java.vendor']} Version: ${System.properties['java.vm.version']})",
-            'Build-OS'       : "OS: ${System.properties['os.name']} Arch: ${System.properties['os.arch']} Version: ${System.properties['os.version']}"
+            'Build-OS'       : "OS: ${System.properties['os.name']} Arch: ${System.properties['os.arch']} Version: ${System.properties['os.version']}",
+            'Implementation-Version' : "\${rootProject.version}"
         )
     }
 }
-
-
-def getVersion() {
-    return versioning.info.full
-}
-
-rootProject.version = getVersion()
-project.version = rootProject.version
-println "project.version is : $project.version"
-
-
-
-
