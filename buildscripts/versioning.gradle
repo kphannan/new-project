@@ -9,9 +9,9 @@ rootProject.version = getVersion()
 project.version = rootProject.version
 println "project.version is : $project.version"
 
-group = $basePackge
+// group = $basePackge
 
-version = $rootProject.version
+version = rootProject.version
 // version defaults to this.
 
 
