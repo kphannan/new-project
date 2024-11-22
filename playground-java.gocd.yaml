@@ -25,14 +25,25 @@ pipelines:
             tasks:
             - exec:
                 arguments:
-                - -lRah
+                - -lRah /
                 command: ls
                 run_if: passed
-          Compile:
+          Show-java:
             timeout: 0
             tasks:
             - exec:
                 arguments:
-                - -check
+                - -v
+                command: java
+                run_if: passed
+          Compile:
+            resources:
+            - java23
+            - gradle
+            timeout: 0
+            tasks:
+            - exec:
                 command: ./gradlew
+                arguments:
+                - check
                 run_if: passed
