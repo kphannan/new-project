@@ -10,7 +10,7 @@ pipelines:
         git: https://github.com/kphannan/new-project.git
         shallow_clone: false
         auto_update: true
-        branch: master
+        branch: develop
     stages:
     - Checkout-Configure:
         fetch_materials: true
@@ -27,4 +27,12 @@ pipelines:
                 arguments:
                 - -lRah
                 command: ls
+                run_if: passed
+          Compile:
+            timeout: 0
+            tasks:
+            - exec:
+                arguments:
+                - -check
+                command: ./gradlew
                 run_if: passed
