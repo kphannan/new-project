@@ -25,8 +25,16 @@ pipelines:
             tasks:
             - exec:
                 arguments:
-                - -lRah
+                - -lRah /
                 command: ls
+                run_if: passed
+          Show-java:
+            timeout: 0
+            tasks:
+            - exec:
+                arguments:
+                - -v
+                command: java
                 run_if: passed
           Compile:
             resources:
