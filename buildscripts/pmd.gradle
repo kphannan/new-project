@@ -1,0 +1,11 @@
+// ----- Static Analysis
+// --- PMD
+pmd {
+    //toolVersion = "${pmdVersion}"       // 6.32.0
+    ruleSetFiles = files("${rootDir}/config/pmd/pmd.xml")
+    // ruleSets = []
+    threads = 8
+
+    consoleOutput  = true
+    ignoreFailures = true       // Don't interrupt the build
+}

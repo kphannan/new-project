@@ -1,0 +1,16 @@
+// --- Mutation testing
+pitest {
+    pitestVersion = "${pitVersion}" //not needed when a default PIT version should be used
+    verbose = true
+    junit5PluginVersion = '1.2.1'
+    // testSourceSets = [sourceSets.test]
+    // mainSourceSets = [sourceSets.main]
+    targetClasses = ["${basePackage}.*"]
+    threads = 16
+    timestampedReports = false
+    withHistory = false
+    outputFormats = ['XML', 'HTML']
+    reportDir = new File("${project.buildDir}/test-results/mutation")
+    // mutators = ['DEFAULTS', 'STRONGER', 'ALL' ]
+    mutators = ['DEFAULTS' ]
+}

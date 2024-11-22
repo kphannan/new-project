@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+
+<!-- https://codestijl.dev/2020/05/08/using-pmd-in-a-gradle-build/ -->
+<!-- https://github.com/darrendanvers/pmd-gradle-example/blob/master/config/pmd/pmd.xml -->
+
+
+<!-- @SuppressWarnings({"PMD.JUnitAssertionsShouldIncludeMessage", "PMD.JUnitTestContainsTooManyAsserts", "PMD. AtLeastOneConstructor" }) -->
+
+
+<ruleset name="Custom ruleset"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0
+         http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+    <description>
+        PMD Basic Configuration
+    </description>
+
+
+    <!-- Best Practices -->
+    <rule ref="category/java/bestpractices.xml">
+        <!-- Tests for exceptions may check message text and cause. -->
+        <exclude name="JUnitAssertionsShouldIncludeMessage" />
+    </rule>
+    <rule ref="category/java/bestpractices.xml/JUnitTestContainsTooManyAsserts">
+        <properties>
+            <property name="maximumAsserts" value="5" />
+        </properties>
+    </rule>
+
+    <!-- Code Style -->
+    <rule ref="category/java/codestyle.xml">
+        <exclude name="CommentDefaultAccessModifier" />
+
+        <!-- Forcing only one return is a mistake. It allows code to be cleaner -->
+        <!-- if you allow for multiple returns. -->
+        <exclude name="OnlyOneReturn" />
+
+        <!-- Requiring a constructor clutters up the code and doesn't add a lot of value. -->
+        <exclude name="AtLeastOneConstructor" />
+    </rule>
+
+    <rule ref="category/java/codestyle.xml/TooManyStaticImports">
+        <properties>
+            <property name="maximumStaticImports" value="6" />
+        </properties>
+    </rule>
+
+    <rule ref="category/java/codestyle.xml/MethodNamingConventions" >
+        <properties>
+            <!-- I like have underscores in my test names. This allows for that. -->
+            <property name="junit4TestPattern" value="[a-z][a-zA-Z0-9_]*" />
+            <property name="junit5TestPattern" value="[a-z][a-zA-Z0-9_]*" />
+        </properties>
+    </rule>
+
+    <rule ref="category/java/codestyle.xml/LongVariable">
+        <properties>
+            <property name="minimum" value="20" />
+        </properties>
+    </rule>
+
+    <!-- Design -->
+    <rule ref="category/java/design.xml">
+        <!-- As much as I theoretically like the Law of Demeter, the test for it hasn't kept up -->
+        <!-- with how a lot of coding is done. It can't handle stream processing. -->
+        <exclude name="LawOfDemeter" />
+        <!-- This rule has to be configured explicitly. There are no defaults. Since there is nothing -->
+        <!-- I want to put in here, I excluded it to remove a warning during build. See -->
+        <!-- https://pmd.github.io/latest/pmd_rules_java_design.html#loosepackagecoupling for how to configure -->
+        <!-- this rule if you want to use 0it. -->
+        <exclude name="LoosePackageCoupling" />
+    </rule>
+
+    <!-- Documentation -->
+    <rule ref="category/java/documentation.xml" />
+    <rule ref="category/java/documentation.xml/CommentRequired">
+        <properties>
+            <!-- Field comments can clutter the code. -->
+            <property name="fieldCommentRequirement" value="Ignored" />
+        </properties>
+    </rule>
+    <rule ref="category/java/documentation.xml/CommentSize">
+        <properties>
+            <!-- 6 lines is too restrictive for comment length as it includes the Javadoc comments. -->
+            <property name="maxLines" value="30" />
+            <!-- I want the line size to match the code requirement. -->
+            <property name="maxLineLength" value="150" />
+        </properties>
+    </rule>
+
+    <!-- Multithreading -->
+    <rule ref="category/java/multithreading.xml" />
+
+    <!-- Performance -->
+    <rule ref="category/java/performance.xml" />
+
+    <!-- Security -->
+    <rule ref="category/java/security.xml"/>
+
+    <!-- Error Prone -->
+    <rule ref="category/java/errorprone.xml" />
+
+</ruleset>

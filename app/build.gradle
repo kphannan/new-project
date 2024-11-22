@@ -5,15 +5,86 @@
  * For more details on building Java & JVM projects, please refer to https://docs.gradle.org/8.10.2/userguide/building_java_projects.html in the Gradle documentation.
  */
 
+buildscript {
+    ext {
+        basePackage                = 'com.example.project'
+
+        // ===== Quality checks =====
+
+        // --- Coding practices (static analysis) ---
+        // --- Coding style
+        checkstyleVersion          = '10.20.0'
+
+        // --- Common Coding flaws
+        pmdVersion                 = '7.7.0'
+
+        // --- Testing ---
+
+        // --- Mutation Testing
+        pitPluginVersion           = '1.15.0'
+        pitVersion                 = '1.17.1'
+
+        // ===== Configuration Management =====
+
+        // --- Artifact Versioning
+        nemerosaVersion            = '3.1.0'
+
+        // --- Artifact Publishing
+        //publishingVersion          = '3.1.0'
+        //  SECTION_VERSIONTAGS
+    }
+}
+
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+
+    // ===== Quality Assurance =====
+    // --- Static Analysis
+
+    // --- Style
+    id 'checkstyle'
+
+    // --- PMD - Common Coding flaws
+    // id 'pmd'
+
+    // --- Coverage
+    id 'jacoco'
+
+    // --- Mutation testing
+    id 'info.solidsoft.pitest' version "${pitPluginVersion}"
+
+    // --- Artifact Versioning
+    id 'net.nemerosa.versioning' version "${nemerosaVersion}"
+
+    // --- Artifact Publishing
+    id 'maven-publish'
+    // SECTION_PLUGIN
 }
 
-repositories {
-    // Use Maven Central for resolving dependencies.
-    mavenCentral()
-}
+
+// ===== QA =====
+// --- Static Code Analysis
+// --- Coding Style
+apply from: '../buildscripts/checkstyle.gradle'
+
+// --- Common Coding flaws
+//apply from: '../buildscripts/pmd.gradle'
+
+// --- Code Coverage
+apply from: '../buildscripts/jacoco.gradle'
+
+// --- Mutation Testing
+apply from: '../buildscripts/pitest.gradle'
+
+// --- Artifact Versioning
+apply from: '../buildscripts/versioning.gradle'
+
+// --- Artifact Publishing
+apply from: '../buildscripts/publishing.gradle'
+// SECTION_APPLY
+
+
 
 dependencies {
     // Use JUnit Jupiter for testing.

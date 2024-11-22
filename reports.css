@@ -3,6 +3,51 @@
 
 /* Cascading Style Sheet */
 
+/* === Control visibility of major report sections === */
+
+/* #app-results, */
+/* 01 - Application  */
+/* 02 - Application QA  */
+/* #app-results .api-spec, */
+/* #app-qa-results, */
+/* #app-qa-results .test-unit .static, */
+.api-spec,
+.test-performance,
+.test-functional,
+.test-bdd,
+#app-qa-results .test-unit .dynamic,
+/* #app-qa-results .test-unit .api-spec, */
+/* #app-qa-results .test-functional, */
+/* #app-qa-results .test-bdd, */
+/* #app-qa-results .test-performance, */
+/* 03 - Library  */
+/* 04 - Library QA  */
+#library-results,
+#library-results .test-unit,
+/* #library-results .test-functional, */
+/* #library-results .test-bdd, */
+/* #library-results .test-performance, */
+#library-qa-results,
+#library-qa-results .test-unit,
+/* #library-qa-results .test-functional, */
+/* #library-qa-results .test-bdd, */
+/* #library-qa-results .test-performance, */
+/* 05 - API  */
+/* 06 - API QA  */
+#api-results,
+#api-results .test-unit,
+/* #api-results .test-functional, */
+/* #api-results .test-bdd, */
+/* #api-results .test-performance, */
+#api-qa-results,
+#api-qa-results .test-unit,
+/* #api-qa-results .test-functional, */
+/* #api-qa-results .test-bdd, */
+/* #api-qa-results .test-performance, */
+#template-results {
+    display: none;
+}
+
 /* ------------------- */
 /* Custom properties   */
 /* ------------------- */
@@ -137,7 +182,6 @@ select {
 
 .flow > *:where(:not(:first-child)) {
     margin-top: var(--flow-space, 1rem);
-    /* outline: 1px solid red; */
 }
 
 
@@ -178,6 +222,7 @@ select {
 .letter-spacing-1 { letter-spacing: 4.75px; }
 .letter-spacing-2 { letter-spacing: 2.7px; }
 .letter-spacing-3 { letter-spacing: 2.35px; }
+.letter-spacing-4 { letter-spacing: 0.13px; }
 
 .uppercase { text-transform: uppercase; }
 
@@ -271,34 +316,28 @@ select {
 
 .underline-indicators > * {
     padding: var(--underline-gap, 1rem) 0;
-    border-bottom: .2rem solid hsl( var(--clr-white) / 0 );
+    border-bottom: .2rem solid hsl( var(--clr-white) / .6 );
 }
 
 .underline-indicators > *:hover,
 .underline-indicators > *:focus {
-    /* border-color: hsl( var(--clr-white) / .5); */
     border-bottom: .2rem solid red;
     background-color: steelblue;
 }
 
 .underline-indicators > .active{
-    border-color: hsl( var(--clr-white) / 1);
+    border-color: hsl( var(--clr-white) / .7);
 }
-/* .example-component {
-    background-color: hsl( var( --clr-light ));
-    background-color: hsl( var( --clr-light ) / .2);
-} */
+
 
 
 .card {
     padding: .6rem;
-    /* border-right: .1rem solid hsl( var(--clr-light) / .5);
-    border-bottom: .2rem solid hsl( var(--clr-light) / .5); */
-    /* box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px; */
-    /* box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px; */
-    /* box-shadow: hsl( var(--clr-light) / .18) 6px 2px 16px 0px, hsl( var(--clr-light) / .38) -6px -2px 16px 0px; */
     box-shadow: hsl( var(--clr-light) / 0.16) 0px 3px 6px, hsl( var(--clr-light) / 0.23) 0px 3px 6px;
 }
 
-
+.card a {
+    color:hsl( var( --clr-white )); /* .text-white */
+    text-decoration-color: hsl( var( --clr-light) / .8);
+}
 
