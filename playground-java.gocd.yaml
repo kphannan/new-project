@@ -1,0 +1,30 @@
+format_version: 10
+pipelines:
+  playground-java:
+    group: Tutorial
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      git-8de86e2:
+        git: https://github.com/kphannan/new-project.git
+        shallow_clone: false
+        auto_update: true
+        branch: master
+    stages:
+    - Checkout-Configure:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          Show-content:
+            timeout: 0
+            tasks:
+            - exec:
+                arguments:
+                - -lRah
+                command: ls
+                run_if: passed
