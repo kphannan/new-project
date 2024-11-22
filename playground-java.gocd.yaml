@@ -29,10 +29,12 @@ pipelines:
                 command: ls
                 run_if: passed
           Compile:
+            resources:
+            - java23
             timeout: 0
             tasks:
             - exec:
+                command: ./gradlew
                 arguments:
                 - -check
-                command: ./gradlew
                 run_if: passed
